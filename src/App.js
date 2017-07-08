@@ -23,8 +23,8 @@ class App extends Component {
     this.setState(this.state.entries)
   }
 
-  onRemoveNote = (index) => {
-    console.log(index)
+  onRemoveNote = (id) => {
+    console.log(id)
   }
 
   // onRemoveNote = function(index) {
@@ -50,7 +50,7 @@ class App extends Component {
                 <Entry
                   key={entry.id}
                   entry={entry.content}
-                  onRemove={function(){this.onRemoveNote}}
+                  onClick={() => {this.onRemoveNote(entry.id)}}
                   />
                 ))}
               </ol>

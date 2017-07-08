@@ -15,7 +15,7 @@ class Entry extends Component {
 		return (
 				<li>
 					{this.props.entry}
-					<a className="remove" onClick={this.props.onRemove}> x </a>
+					<button className="remove" onClick={() => this.props.onClick()}> x </button>
 				</li>
 		)
 	}
