@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Entries from './Entries'
+import AddNote from './AddNotes.js'
+import Entry from './Entry.js'
 import './bootstrap.min.css'
 import './App.css';
 
@@ -7,19 +8,28 @@ class App extends Component {
 
   state = {
     entries: [{
-      key: 1,
+      id: 1,
       content: "Hoy quiero jugar"
     }]
   }
 
   onAddNote = (newEntry) => {
-    var key = this.state.entries.length;
-    key += 1;
+    var id = this.state.entries.length;
+    id += 1;
     this.state.entries.push({
-      key: key,
+      id: id,
       content: newEntry
     })
+    this.setState(this.state.entries)
   }
+
+  onRemoveNote = (index) => {
+    console.log(index)
+  }
+
+  // onRemoveNote = function(index) {
+  //   console.log(index)
+  // }
 
   render() {
     return (
@@ -30,10 +40,22 @@ class App extends Component {
           </div>
         </div>
         <div className='row'>
-          <Entries
-            entries={this.state.entries}
+          <AddNote
             onAdd={this.onAddNote}
           />
+          <div className='row'>
+            <div className='col-md-6 col-xs-offset-2'>
+              <ol>
+              {this.state.entries.map((entry) => (
+                <Entry
+                  key={entry.id}
+                  entry={entry.content}
+                  onRemove={function(){this.onRemoveNote}}
+                  />
+                ))}
+              </ol>
+            </div>
+            </div>
         </div>
       </div>
     );
