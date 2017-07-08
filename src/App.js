@@ -24,7 +24,9 @@ class App extends Component {
   }
 
   onRemoveNote = (id) => {
-    console.log(id)
+    this.setState((state) => ({
+        entries: state.entries.filter((c) => c.id !== id)
+    }))
   }
 
   // onRemoveNote = function(index) {
